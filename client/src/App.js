@@ -28,27 +28,21 @@ function App() {
 	return (
 		<div className="App">
 			<div className="Reservation">
+				{/* TODO: Set value to display properly; single source of truth */}
 				<label>Reservation ID</label>
 				<input type="number" onChange={(e) => setReservationId(e.target.value)} />
-
 				<label>Customer ID</label>
 				<input type="number" onChange={(e) => setCustomerId(e.target.value)} />
-
 				<label>Aircraft</label>
 				<input type="text" onChange={(e) => setAircraft(e.target.value)} />
-
 				<label>Start date</label>
 				<input type="text" onChange={(e) => setStart(e.target.value)} />
-
 				<label>End date</label>
 				<input type="text" onChange={(e) => setEnd(e.target.value)} />
-
 				<label>Flight plan ID</label>
 				<input type="number" onChange={(e) => setFlightPlan(e.target.value)} />
-
 				<label>Instructor ID</label>
 				<input type="number" onChange={(e) => setInstructorId(e.target.value)} />
-
 				<hr />
 				<button
 					onClick={() => {
