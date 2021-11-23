@@ -54,6 +54,6 @@ app.post('/view-aircraft', (req, res) => {
 });
 
 // Server start message
-app.listen(3001, () => {
-	console.log('Server started');
+app.listen(process.env.PORT | PORT, () => {
+	console.log(`Server started on port ${PORT}`);
 });
