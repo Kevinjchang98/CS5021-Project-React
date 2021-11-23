@@ -34,13 +34,13 @@ function App() {
 		Axios.post('https://cs5021-project.herokuapp.com/view-aircraft', { customerIdAircraft: customerIdAircraft }) //
 			.then((res) => {
 				console.log(res);
-				setAircraftList(res);
+				// setAircraftList(res);
 			});
 	};
 
 	return (
 		<div className="App">
-			<div className="Reservation">
+			<div className="Reservation Test">
 				{/* TODO: Set value to display properly; single source of truth */}
 				<h1>Add Reservation</h1>
 				<label>Reservation ID</label>
