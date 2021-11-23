@@ -44,13 +44,89 @@ app.post('/create-reservation', (req, res) => {
 app.post('/view-aircraft', (req, res) => {
 	const customerId = req.body.customerIdAircraft;
 
-	db.query('call mm_cpsc502101team07.listFlyableAircraft(?)', [ customerId ], (err, result) => {
-		if (err) {
-			console.log(err);
-		} else {
-			res.send(result);
+	// NOTE: This is using the stored procedure which ClearDB doesn't allow for permissions
+	// db.query('call mm_cpsc502101team07.listFlyableAircraft(?)', [ customerId ], (err, result) => {
+	// 	if (err) {
+	// 		console.log(err);
+	// 	} else {
+	// 		res.send(result);
+	// 	}
+	// });
+
+	db.query(
+		`SELECT
+			Flyable.*,
+			max(datePerformed) AS mostRecentMaint
+		FROM
+			Maintenance
+			INNER JOIN (
+				SELECT
+					idAircraft,
+					class,
+					100HrDueTime - tachTime as timeBefore100Hr,
+					rentalRate,
+					annualInspectionDate,
+					isTailwheel,
+					isComplex,
+					isHighPerformance
+				FROM
+					CustomerHasRating
+					INNER JOIN Aircraft ON class = idRating
+					AND (
+						Aircraft.isTailwheel = EXISTS(
+							SELECT
+								*
+							FROM
+								CustomerHasRating
+							WHERE
+								idCustomer = (?)
+								AND idRating = 'TW'
+						)
+						OR Aircraft.isTailWheel = 0
+					)
+					AND (
+						Aircraft.isComplex = EXISTS(
+							SELECT
+								*
+							FROM
+								CustomerHasRating
+							WHERE
+								idCustomer = (?)
+								AND idRating = 'CP'
+						)
+						OR Aircraft.isComplex = 0
+					)
+					AND (
+						Aircraft.isHighPerformance = EXISTS(
+							SELECT
+								*
+							FROM
+								CustomerHasRating
+							WHERE
+								idCustomer = (?)
+								AND idRating = 'HP'
+						)
+						OR Aircraft.isHighPerformance = '0'
+					)
+				WHERE
+					idCustomer = (?)
+					AND annualInspectionDate > NOW() + INTERVAL 1 DAY
+					AND 100HrDueTime - tachTime > 0.1
+			) Flyable ON Maintenance.idAircraft = Flyable.idAircraft
+		GROUP BY
+			Flyable.idAircraft
+		ORDER BY
+			class,
+			rentalRate`,
+		[ customerId, customerId, customerId, customerId ],
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
 		}
-	});
+	);
 });
 
 // Server start message
