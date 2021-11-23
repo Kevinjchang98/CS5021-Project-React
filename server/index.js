@@ -11,10 +11,10 @@ const passwordVar = fs.readFileSync('password.config').toString();
 
 // TODO: Make sure database dump has reactClient as an additional user for this to work
 const db = mysql.createConnection({
-	user: 'reactClient',
-	host: 'localhost',
-	password: 'password',
-	database: 'mm_cpsc502101team07'
+	user: 'b57e165b4c319d',
+	host: 'us-cdbr-east-04.cleardb.com',
+	password: '1570dbc1',
+	database: 'heroku_200e0e8c7fc90b0'
 });
 
 // Creates a reservation
