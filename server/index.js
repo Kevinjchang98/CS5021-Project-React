@@ -130,6 +130,37 @@ app.post('/view-aircraft', (req, res) => {
 	);
 });
 
+// View aircraft with soonest annual inspection
+app.get('/view-aircraft-soonest-annual', (req, res) => {
+	db.query(
+		`SELECT
+			class,
+			idAircraft,
+			annualInspectionDate,
+			tachTime
+		FROM
+			Aircraft a1
+		WHERE
+			annualInspectionDate = (
+				SELECT
+					MIN(annualInspectionDate)
+				FROM
+					Aircraft a2
+				WHERE
+					a2.class = a1.class
+			)
+		ORDER BY
+			class`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		}
+	);
+});
+
 // Server start message
 app.listen(process.env.PORT, () => {
 	console.log(`Server started on port`);
