@@ -17,6 +17,7 @@ const db = mysql.createConnection({
 	database: 'mm_cpsc502101team07'
 });
 
+// Creates a reservation
 app.post('/create-reservation', (req, res) => {
 	console.log(req.body);
 	const reservationId = req.body.reservationId;
@@ -40,6 +41,7 @@ app.post('/create-reservation', (req, res) => {
 	);
 });
 
+// Runs stored procedure that takes in customerId and returns flyable aircraft
 app.post('/view-aircraft', (req, res) => {
 	console.log(req.body);
 
@@ -54,6 +56,7 @@ app.post('/view-aircraft', (req, res) => {
 	});
 });
 
+// Server start message
 app.listen(3001, () => {
 	console.log('Server started');
 });
