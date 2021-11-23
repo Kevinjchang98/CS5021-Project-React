@@ -13,7 +13,7 @@ function App() {
 	const [ instructorId, setInstructorId ] = useState(null);
 
 	const addReservation = () => {
-		Axios.post('http://localhost:3001/create-reservation', {
+		Axios.post('https://cs5021-project.herokuapp.com/create-reservation', {
 			reservationId: reservationId,
 			customerId: customerId,
 			aircraft: aircraft,
@@ -31,7 +31,7 @@ function App() {
 	const [ customerIdAircraft, setCustomerIdAircraft ] = useState(null);
 
 	const getAircraft = () => {
-		Axios.post('http://localhost:3001/view-aircraft', { customerIdAircraft: customerIdAircraft }) //
+		Axios.post('https://cs5021-project.herokuapp.com/view-aircraft', { customerIdAircraft: customerIdAircraft }) //
 			.then((res) => {
 				setAircraftList(res.data[0]);
 				console.log(res.data[0]);
