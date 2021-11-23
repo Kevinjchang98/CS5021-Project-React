@@ -40,9 +40,9 @@ function App() {
 
 	return (
 		<div className="App">
-			<div className="Reservation Test">
+			<div className="Reservation">
 				{/* TODO: Set value to display properly; single source of truth */}
-				<h1>Add Reservation</h1>
+				<h1>Add Reservation Test</h1>
 				<label>Reservation ID</label>
 				<input type="number" onChange={(e) => setReservationId(e.target.value)} />
 
@@ -92,14 +92,6 @@ function App() {
 				</button>
 
 				<hr />
-
-				{/* {aircraftList.map((val, key) => {
-					return (
-						<div key={val.idAircraft}>
-							{val.idAircraft} -- {val.class}
-						</div>
-					);
-				})} */}
 			</div>
 		</div>
 	);
