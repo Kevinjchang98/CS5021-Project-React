@@ -6,8 +6,8 @@ app.use(cors());
 app.use(express.json());
 
 // Password to mysql db in plaintext in password.config file
-var fs = require('fs');
-const passwordVar = fs.readFileSync('password.config').toString();
+// var fs = require('fs');
+// const passwordVar = fs.readFileSync('password.config').toString();
 
 // TODO: Make sure database dump has reactClient as an additional user for this to work
 const db = mysql.createConnection({
