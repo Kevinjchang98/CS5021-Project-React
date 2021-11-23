@@ -33,8 +33,8 @@ function App() {
 	const getAircraft = () => {
 		Axios.post('https://cs5021-project.herokuapp.com/view-aircraft', { customerIdAircraft: customerIdAircraft }) //
 			.then((res) => {
-				console.log(res.data);
-				setAircraftList(res.data[0]);
+				console.log(res);
+				setAircraftList(res);
 			});
 	};
 
