@@ -40,12 +40,16 @@ app.post('/create-reservation', (req, res) => {
 	);
 });
 
-app.get('/view-aircraft', (req, res) => {
-	db.query('SELECT * from aircraft ORDER BY idAircraft', (err, result) => {
+app.post('/view-aircraft', (req, res) => {
+	console.log(req.body);
+
+	const customerId = req.body.customerIdAircraft;
+
+	db.query('call mm_cpsc502101team07.listFlyableAircraft(?)', [ customerId ], (err, result) => {
 		if (err) {
 			console.log(err);
 		} else {
-			res.send('Aircraft information loaded');
+			res.send(result);
 		}
 	});
 });

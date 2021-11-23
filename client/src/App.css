@@ -11,3 +11,9 @@
 	flex-direction: column;
 	justify-content: center;
 }
+
+.AircraftData {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}

@@ -3,6 +3,7 @@ import Axios from 'axios';
 import './App.css';
 
 function App() {
+	// Reservation
 	const [ reservationId, setReservationId ] = useState(null);
 	const [ customerId, setCustomerId ] = useState(null);
 	const [ aircraft, setAircraft ] = useState('');
@@ -25,25 +26,46 @@ function App() {
 		});
 	};
 
+	// Aircraft
+	const [ aircraftList, setAircraftList ] = useState([]);
+	const [ customerIdAircraft, setCustomerIdAircraft ] = useState(null);
+
+	const getAircraft = () => {
+		Axios.post('http://localhost:3001/view-aircraft', { customerIdAircraft: customerIdAircraft }) //
+			.then((res) => {
+				setAircraftList(res.data[0]);
+				console.log(res.data[0]);
+			});
+	};
+
 	return (
 		<div className="App">
 			<div className="Reservation">
 				{/* TODO: Set value to display properly; single source of truth */}
+				<h1>Add Reservation</h1>
 				<label>Reservation ID</label>
 				<input type="number" onChange={(e) => setReservationId(e.target.value)} />
+
 				<label>Customer ID</label>
 				<input type="number" onChange={(e) => setCustomerId(e.target.value)} />
+
 				<label>Aircraft</label>
 				<input type="text" onChange={(e) => setAircraft(e.target.value)} />
+
 				<label>Start date</label>
 				<input type="text" onChange={(e) => setStart(e.target.value)} />
+
 				<label>End date</label>
 				<input type="text" onChange={(e) => setEnd(e.target.value)} />
+
 				<label>Flight plan ID</label>
 				<input type="number" onChange={(e) => setFlightPlan(e.target.value)} />
+
 				<label>Instructor ID</label>
 				<input type="number" onChange={(e) => setInstructorId(e.target.value)} />
+
 				<hr />
+
 				<button
 					onClick={() => {
 						addReservation();
@@ -51,6 +73,33 @@ function App() {
 				>
 					Add Reservation
 				</button>
+			</div>
+
+			<div className="AircraftData">
+				<h1>Show recommended aircraft</h1>
+
+				<label>Customer ID</label>
+				<input type="number" onChange={(e) => setCustomerIdAircraft(e.target.value)} />
+
+				<hr />
+
+				<button
+					onClick={() => {
+						getAircraft();
+					}}
+				>
+					Show
+				</button>
+
+				<hr />
+
+				{aircraftList.map((val, key) => {
+					return (
+						<div key={val.idAircraft}>
+							{val.idAircraft} -- {val.class}
+						</div>
+					);
+				})}
 			</div>
 		</div>
 	);
