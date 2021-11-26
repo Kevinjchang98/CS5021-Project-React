@@ -161,6 +161,68 @@ app.get('/view-aircraft-soonest-annual', (req, res) => {
 	);
 });
 
+// Finds mechanic that's done the most Maint within the last year and Type of Maint they've done
+app.get('/view-mechanic-most-performed', (req, res) => {
+	db.query(
+		`SELECT
+			mech.*,
+			maint.maintType,
+			count(*) AS typeFrequency,
+			A.mechanicCount AS totalCountPerMechanic
+		FROM
+			Maintenance maint
+			JOIN Mechanic mech ON maint.idMechanic = mech.idMechanic
+			JOIN (
+				SELECT
+					idMechanic,
+					count(*) AS mechanicCount
+				FROM
+					Maintenance
+				GROUP BY
+					idMechanic
+				HAVING
+					mechanicCount >= (
+						SELECT
+							MAX(a1.mechanicCount)
+						FROM
+							(
+								SELECT
+									count(*) AS mechanicCount
+								FROM
+									Maintenance
+								GROUP BY
+									idMechanic
+							) a1
+					)
+			) A ON maint.idMechanic = A.idMechanic
+		GROUP BY
+			maint.idMechanic,
+			maint.maintType
+		HAVING
+			typeFrequency >= (
+				SELECT
+					MAX(b1.mechanicCount)
+				FROM
+					(
+						SELECT
+							count(*) AS mechanicCount
+						FROM
+							Maintenance
+						GROUP BY
+							maintType,
+							idMechanic
+					) b1
+			)`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		}
+	);
+});
+
 // Server start message
 app.listen(process.env.PORT, () => {
 	console.log(`Server started on port`);
