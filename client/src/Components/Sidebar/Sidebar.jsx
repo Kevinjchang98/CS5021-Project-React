@@ -1,4 +1,4 @@
-import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import { Link } from 'react-router-dom';
 
@@ -7,6 +7,24 @@ import queryData from '../GetQuery/GetQueryData';
 function Sidebar() {
 	return (
 		<ProSidebar width="400px">
+			<SidebarHeader>
+				<div
+					style={{
+						padding: '20px',
+						textTransform: 'uppercase',
+						fontWeight: 'bold',
+						fontSize: 14,
+						letterSpacing: '1px',
+						overflow: 'hidden',
+						textOverflow: 'ellipsis',
+						whiteSpace: 'nowrap'
+					}}
+				>
+					CS5021-1 Group 7
+					<br />
+					Flight School Management Database
+				</div>
+			</SidebarHeader>
 			<Menu>
 				<MenuItem>
 					<Link to="/">Home</Link>
