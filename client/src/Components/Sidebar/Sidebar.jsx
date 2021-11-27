@@ -14,7 +14,7 @@ function Sidebar() {
 				<MenuItem>
 					<Link to="/reservation">Create Reservation</Link>
 				</MenuItem>
-				<SubMenu title="Sample Queries">
+				<SubMenu title="Sample Queries" defaultOpen="true">
 					<MenuItem>
 						<Link to="/recommended-aircraft">Recommended Aircraft</Link>
 					</MenuItem>
