@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Axios from 'axios';
+import { JsonToTable } from 'react-json-to-table';
 
 function AircraftRecommendation() {
 	const [ aircraftList, setAircraftList ] = useState([]);
@@ -34,6 +35,8 @@ function AircraftRecommendation() {
 					</div>
 				);
 			})}
+
+			<JsonToTable json={aircraftList} />
 		</div>
 	);
 }

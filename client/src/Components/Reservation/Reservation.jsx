@@ -27,7 +27,7 @@ function Reservation() {
 	return (
 		<div className="Reservation">
 			{/* TODO: Set value to display properly; single source of truth */}
-			<h1>Add Reservation</h1>
+			<h1>Create Reservation</h1>
 			<label>Reservation ID</label>
 			<input type="number" onChange={(e) => setReservationId(e.target.value)} />
 
@@ -56,7 +56,7 @@ function Reservation() {
 					addReservation();
 				}}
 			>
-				Add Reservation
+				Create
 			</button>
 		</div>
 	);

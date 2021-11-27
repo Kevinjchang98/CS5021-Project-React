@@ -25,5 +25,12 @@ body {
 }
 
 .ContentBody {
-	min-width: calc(100vw - 270px);
+	min-width: calc(100vw - 400px);
+}
+
+.GetQueryBody {
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
