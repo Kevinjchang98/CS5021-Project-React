@@ -12,16 +12,16 @@ function Sidebar() {
 					<Link to="/">Home</Link>
 				</MenuItem>
 				<MenuItem>
-					<Link to="/reservation">Create Reservation</Link>
+					<Link to="#/reservation">Create Reservation</Link>
 				</MenuItem>
 				<SubMenu title="Sample Queries" defaultOpen="true">
 					<MenuItem>
-						<Link to="/recommended-aircraft">Recommended Aircraft</Link>
+						<Link to="#/recommended-aircraft">Recommended Aircraft</Link>
 					</MenuItem>
 					{queryData.map((data) => {
 						return (
 							<MenuItem key={data.url}>
-								<Link to={data.url}>{data.title}</Link>
+								<Link to={'#/' + data.url}>{data.title}</Link>
 							</MenuItem>
 						);
 					})}
