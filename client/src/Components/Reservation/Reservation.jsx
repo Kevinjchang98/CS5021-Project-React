@@ -5,7 +5,7 @@ function Reservation() {
 	const [ reservationId, setReservationId ] = useState(null);
 	const [ customerId, setCustomerId ] = useState(null);
 	const [ aircraft, setAircraft ] = useState('');
-	const [ start, setStart ] = useState('2021-11-12 13:45:00');
+	const [ start, setStart ] = useState('2021-11-12 13:45:00'); // TODO: Update default value
 	const [ end, setEnd ] = useState('2021-11-12 13:45:00');
 	const [ flightPlan, setFlightPlan ] = useState(null);
 	const [ instructorId, setInstructorId ] = useState(null);
