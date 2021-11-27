@@ -24,12 +24,13 @@ function App() {
 						<Route path="/reservation" element={<Reservation />} />
 
 						{queryData.map((data) => {
-							console.log(data.url);
 							return (
 								<Route
 									key={data.url}
 									path={'/' + data.url}
-									element={<GetQuery title={data.title} url={data.url} />}
+									element={
+										<GetQuery title={data.title} url={data.url} description={data.description} />
+									}
 								/>
 							);
 						})}
