@@ -1,19 +1,29 @@
+body {
+	margin: 0px;
+	font-family: 'Avenir', 'Helvetica', sans-serif;
+}
+
 .App {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	flex-direction: row;
 
-	align-items: center;
+	min-height: 100vh;
 }
 
 .Reservation {
+	margin: 10px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 }
 
-.AircraftData {
+.AircraftRecommendation {
+	margin: 10px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+}
+
+.ContentBody {
+	min-width: calc(100vw - 270px);
 }
