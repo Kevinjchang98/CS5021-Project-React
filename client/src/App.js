@@ -21,13 +21,14 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/recommended-aircraft" element={<AircraftRecommendation />} />
-						<Route path="#/reservation" element={<Reservation />} />
+						<Route path="/reservation" element={<Reservation />} />
 
 						{queryData.map((data) => {
+							console.log(data.url);
 							return (
 								<Route
 									key={data.url}
-									path={'#/' + data.url}
+									path={'/' + data.url}
 									element={
 										<GetQuery title={data.title} url={data.url} description={data.description} />
 									}
