@@ -5,10 +5,7 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
-// Password to mysql db in plaintext in password.config file
-// var fs = require('fs');
-// const passwordVar = fs.readFileSync('password.config').toString();
-
+// Create connection pool
 const db = mysql.createPool({
 	connectionLimit: 10,
 	user: 'b57e165b4c319d',
