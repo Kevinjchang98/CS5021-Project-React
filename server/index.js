@@ -123,7 +123,6 @@ app.post('/view-aircraft', (req, res) => {
 			if (err) {
 				console.log(err);
 			} else {
-				console.log(result);
 				res.send(result);
 			}
 		}
@@ -272,7 +271,14 @@ app.get('/view-customer-instructor-pair', (req, res) => {
 			instr.nameLast,
 			instr.nameFirst,
 			cust.nameLast,
-			cust.nameFirst`
+			cust.nameFirst`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		}
 	);
 });
 
@@ -292,7 +298,14 @@ app.get('/view-aircraft-most-flown', (req, res) => {
 					MAX(tachTime)
 				FROM
 					Aircraft
-			)`
+			)`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		}
 	);
 });
 
@@ -329,7 +342,14 @@ app.get('/view-instructor-details-most-used', (req, res) => {
 						GROUP BY
 							res1.idInstructor
 					) a1
-			)`
+			)`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		}
 	);
 });
 
@@ -358,7 +378,14 @@ app.get('/view-aircraft-high-reservations', (req, res) => {
 			) AS res ON ac.idAircraft = res.idAircraft
 		ORDER BY
 			class,
-			idAircraft`
+			idAircraft`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		}
 	);
 });
 
@@ -373,7 +400,14 @@ app.get('/view-customers-unpaid-invoices', (req, res) => {
 			JOIN Reservation res ON cust.idCustomer = res.idCustomer
 			JOIN Invoice inv ON inv.idInvoice = res.idInvoice
 		WHERE
-			inv.isPaid = 0`
+			inv.isPaid = 0`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		}
 	);
 });
 
@@ -399,7 +433,14 @@ app.get('/view-customers-reservations-no-invoices', (req, res) => {
 					idCustomer
 				HAVING
 					count(idReservation) > 5
-			) AS res ON res.idCustomer = cust.idCustomer`
+			) AS res ON res.idCustomer = cust.idCustomer`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		}
 	);
 });
 
@@ -426,7 +467,14 @@ app.get('/view-customers-reservations-no-payment', (req, res) => {
 			idPaymentMethod IS NULL
 		ORDER BY
 			nameLast,
-			nameFirst`
+			nameFirst`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		}
 	);
 });
 
@@ -444,7 +492,14 @@ app.get('/view-instructors-with-reservations', (req, res) => {
 			JOIN Reservation res ON inst.idInstructor = res.idInstructor
 		WHERE
 			res.dateStart >= (NOW() - INTERVAL 1 DAY)
-			AND res.idInstructor IS NOT NULL`
+			AND res.idInstructor IS NOT NULL`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		}
 	);
 });
 
@@ -474,7 +529,14 @@ app.get('/view-customer-ratings-hp-booked', (req, res) => {
 					Reservation.idCustomer
 			) a ON a.idCustomer = CustomerHasRating.idCustomer
 		ORDER BY
-			idCustomer`
+			idCustomer`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		}
 	);
 });
 
@@ -506,7 +568,14 @@ app.get('/view-people-edu-emails', (req, res) => {
 		FROM
 			Mechanic
 		WHERE
-			email LIKE '%.edu'`
+			email LIKE '%.edu'`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		}
 	);
 });
 
@@ -537,7 +606,14 @@ app.get('/view-customer-categories-reservation-frequency', (req, res) => {
 					idCustomer
 			) A1 ON res.idCustomer = A1.idCustomer
 		ORDER BY
-			idCustomer`
+			idCustomer`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		}
 	);
 });
 
