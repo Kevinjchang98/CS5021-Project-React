@@ -54,10 +54,10 @@ const queryData = [
 			'Lists out all customers that don’t have any payment information saved but already made reservations, which may let the flight school know which customers to request information from if the particular flight school’s business rules require saved payment information, for example.'
 	},
 	{
-		title: 'Select Instructors with Reservations',
+		title: 'Select Instructors with Upcoming Reservations',
 		url: 'view-instructors-with-reservations',
 		description:
-			'Shows all instructors that have upcoming reservations. Could be used by a flight school for automated reminders, checking that instructors won’t overfly their maximum allowed 8 hours of instruction flight time per 24 hours, ensuring the front desk is always staffed by at least one person, etc.'
+			'Shows all instructors that have upcoming reservations. Could be used by a flight school for automated reminders, checking that instructors won’t overfly their maximum allowed 8 hours of instruction flight time per 24 hours, ensuring the front desk is always staffed by at least one person, etc. Note that there will likely be no results as the sample data is not being constantly updated with new reservations.'
 	},
 	{
 		title: "Show HP Reservations' Customers' Ratings",
