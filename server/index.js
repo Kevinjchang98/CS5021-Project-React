@@ -10,7 +10,15 @@ app.use(express.json());
 // const passwordVar = fs.readFileSync('password.config').toString();
 
 // TODO: Make sure database dump has reactClient as an additional user for this to work
-const db = mysql.createConnection({
+// const db = mysql.createConnection({
+// 	user: 'b57e165b4c319d',
+// 	host: 'us-cdbr-east-04.cleardb.com',
+// 	password: '1570dbc1',
+// 	database: 'heroku_200e0e8c7fc90b0'
+// });
+
+const db = mysql.createPool({
+	connectionLimit: 10,
 	user: 'b57e165b4c319d',
 	host: 'us-cdbr-east-04.cleardb.com',
 	password: '1570dbc1',
