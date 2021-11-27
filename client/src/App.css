@@ -10,6 +10,12 @@ body {
 	min-height: 100vh;
 }
 
+.Home {
+	margin: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
 .Reservation {
 	margin: 10px;
 	display: flex;

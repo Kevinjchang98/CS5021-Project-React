@@ -1,5 +1,5 @@
 function Home() {
-	return <div>Placeholder home content</div>;
+	return <div className="Home">Placeholder home content</div>;
 }
 
 export default Home;
