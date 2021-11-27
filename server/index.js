@@ -224,7 +224,7 @@ app.get('/view-mechanic-most-performed', (req, res) => {
 });
 
 // Selects the most frequently flown-together Customer and Instructor pair(s)
-app.get('view-customer-instructor-pair', (req, res) => {
+app.get('/view-customer-instructor-pair', (req, res) => {
 	db.query(
 		`SELECT
 			instr.idInstructor,
@@ -277,7 +277,7 @@ app.get('view-customer-instructor-pair', (req, res) => {
 });
 
 // Selects the Aircraft that's been flown the most
-app.get('view-aircraft-most-flown', (req, res) => {
+app.get('/view-aircraft-most-flown', (req, res) => {
 	db.query(
 		`SELECT
 			idAircraft,
@@ -297,7 +297,7 @@ app.get('view-aircraft-most-flown', (req, res) => {
 });
 
 // Selects the most used Instructor, their current Rate, and largest single Invoice
-app.get('view-instructor-details-most-used', (req, res) => {
+app.get('/view-instructor-details-most-used', (req, res) => {
 	db.query(
 		`SELECT
 			inst.*,
@@ -335,7 +335,7 @@ app.get('view-instructor-details-most-used', (req, res) => {
 
 // Select Aircraft that have gone through more than 15 reservations
 // TODO: Consider making 15 variable and this a post() instead of get()
-app.get('view-aircraft-high-reservations', (req, res) => {
+app.get('/view-aircraft-high-reservations', (req, res) => {
 	db.query(
 		`SELECT
 			ac.idAircraft,
@@ -363,7 +363,7 @@ app.get('view-aircraft-high-reservations', (req, res) => {
 });
 
 // Select all Customers with unpaid Invoices
-app.get('view-customers-unpaid-invoices', (req, res) => {
+app.get('/view-customers-unpaid-invoices', (req, res) => {
 	db.query(
 		`SELECT
 			cust.*,
@@ -378,7 +378,7 @@ app.get('view-customers-unpaid-invoices', (req, res) => {
 });
 
 // Select Customers with more than 5 Reservations that have no Invoices
-app.get('view-customers-reservations-no-invoices', (req, res) => {
+app.get('/view-customers-reservations-no-invoices', (req, res) => {
 	db.query(
 		`SELECT
 			cust.idCustomer,
@@ -404,7 +404,7 @@ app.get('view-customers-reservations-no-invoices', (req, res) => {
 });
 
 // Select Customers with no saved Payment information that already have Reservations
-app.get('view-customers-reservations-no-payment', (req, res) => {
+app.get('/view-customers-reservations-no-payment', (req, res) => {
 	db.query(
 		`SELECT
 			DISTINCT nameLast,
@@ -431,7 +431,7 @@ app.get('view-customers-reservations-no-payment', (req, res) => {
 });
 
 // Select Instructors that have Reservations within the next 24 hours
-app.get('view-instructors-with-reservations', (req, res) => {
+app.get('/view-instructors-with-reservations', (req, res) => {
 	db.query(
 		`SELECT
 			inst.*,
@@ -450,7 +450,7 @@ app.get('view-instructors-with-reservations', (req, res) => {
 
 // Select Ratings of Customers that have booked High Performance Aircraft
 // TODO: Consider changing HP to a variable to allow selection for others
-app.get('view-customer-ratings-hp-booked', (req, res) => {
+app.get('/view-customer-ratings-hp-booked', (req, res) => {
 	db.query(
 		`SELECT
 			a.idCustomer,
@@ -479,7 +479,7 @@ app.get('view-customer-ratings-hp-booked', (req, res) => {
 });
 
 // Select all Customers and Instructors that have .edu emails
-app.get('view-people-edu-emails', (req, res) => {
+app.get('/view-people-edu-emails', (req, res) => {
 	db.query(
 		`SELECT
 			email,
@@ -511,7 +511,7 @@ app.get('view-people-edu-emails', (req, res) => {
 });
 
 // Categorize Customer by frequency of Reservations made
-app.get('view-customer-categories-reservation-frequency', (req, res) => {
+app.get('/view-customer-categories-reservation-frequency', (req, res) => {
 	db.query(
 		`SELECT
 			DISTINCT cust.*,
