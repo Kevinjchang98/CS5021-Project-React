@@ -26,7 +26,9 @@ app.post('/create-reservation', (req, res) => {
 	const instructorId = req.body.instructorId;
 
 	db.query(
-		'INSERT INTO reservation (idCustomer, idAircraft, dateStart, dateEnd, idFlightPlan, idInstructor) VALUES (?, ?, ?, ?, ?, ?)',
+		`SET SESSION auto_increment_increment = 1;
+        
+        INSERT INTO reservation (idCustomer, idAircraft, dateStart, dateEnd, idFlightPlan, idInstructor) VALUES (?, ?, ?, ?, ?, ?);`,
 		[ customerId, aircraft, start, end, flightPlan, instructorId ],
 		(err, result) => {
 			if (err) {
