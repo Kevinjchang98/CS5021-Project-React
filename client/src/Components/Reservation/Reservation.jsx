@@ -29,14 +29,16 @@ function Reservation() {
 			instructorId: instructorId
 		}).then((res) => {
 			setIsLoadingCreate(false);
+			viewNewestReservations();
 		});
 	};
 
 	const viewNewestReservations = () => {
 		setIsLoadingView(true);
+		setReservationData(null);
 		Axios.get('https://cs5021-project.herokuapp.com/view-newest-reservations').then((res) => {
 			setIsLoadingView(false);
-			setReservationData(res);
+			setReservationData(res.data);
 		});
 	};
 
@@ -94,6 +96,8 @@ function Reservation() {
 					View newest reservations
 				</button>
 			)}
+
+			<br />
 
 			<JsonToTable json={reservationData} />
 		</div>
