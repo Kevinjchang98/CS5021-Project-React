@@ -9,20 +9,26 @@ import 'react-datepicker/dist/react-datepicker.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 function Reservation() {
+	// Input form data
 	const [ customerId, setCustomerId ] = useState(null);
 	const [ aircraft, setAircraft ] = useState('');
 	const [ start, setStart ] = useState(new Date());
 	const [ end, setEnd ] = useState(new Date());
-	const [ startFormatted, setStartFormatted ] = useState('');
-	const [ endFormatted, setEndFormatted ] = useState('');
 	const [ flightPlan, setFlightPlan ] = useState(null);
 	const [ instructorId, setInstructorId ] = useState(null);
 
+	// Start and end Date objects reformatted to SQL datetime strings
+	const [ startFormatted, setStartFormatted ] = useState('');
+	const [ endFormatted, setEndFormatted ] = useState('');
+
+	// Reservation table data
 	const [ reservationData, setReservationData ] = useState();
 
+	// Loading statuses for creating reservation and viewing Reservation table
 	const [ isLoadingCreate, setIsLoadingCreate ] = useState(false);
 	const [ isLoadingView, setIsLoadingView ] = useState(false);
 
+	// Format start date every time it's changed
 	useEffect(
 		() => {
 			setStartFormatted(moment(start).format('YYYY-MM-DD HH:MM:SS'));
@@ -30,6 +36,7 @@ function Reservation() {
 		[ start ]
 	);
 
+	// Format end date every time it's changed
 	useEffect(
 		() => {
 			setEndFormatted(moment(end).format('YYYY-MM-DD HH:MM:SS'));
@@ -37,6 +44,7 @@ function Reservation() {
 		[ end ]
 	);
 
+	// Sends a post request to MySQL server, sets loading status properly and automatically runs the viewNewestReservations() function once the new reservation is successfully created
 	const addReservation = () => {
 		setIsLoadingCreate(true);
 		Axios.post('https://cs5021-project.herokuapp.com/create-reservation', {
@@ -52,6 +60,7 @@ function Reservation() {
 		});
 	};
 
+	// Queries the MySQL server, sets loading status properly, deletes old reservationData when awaiting new data
 	const viewNewestReservations = () => {
 		setIsLoadingView(true);
 		setReservationData(null);

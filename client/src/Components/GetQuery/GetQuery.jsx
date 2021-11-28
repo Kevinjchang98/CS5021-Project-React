@@ -6,9 +6,11 @@ import Loader from 'react-loader-spinner';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 function GetQuery(props) {
+	// Variables for data and loading status
 	const [ data, setData ] = useState();
 	const [ isLoading, setIsLoading ] = useState(false);
 
+	// Clear the saved data whenever the page title (so the selected query) changes
 	useEffect(
 		() => {
 			setData();
@@ -16,6 +18,7 @@ function GetQuery(props) {
 		[ props.title ]
 	);
 
+	// Queries the MySQL server, sets loading status properly and sets data once received
 	const query = () => {
 		setIsLoading(true);
 		Axios.get('https://cs5021-project.herokuapp.com/' + props.url) //
@@ -24,6 +27,7 @@ function GetQuery(props) {
 				setIsLoading(false);
 			});
 	};
+
 	return (
 		<div className="GetQueryBody">
 			<h1>{props.title}</h1>
