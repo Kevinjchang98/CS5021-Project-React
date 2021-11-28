@@ -15,8 +15,9 @@ const db = mysql.createPool({
 });
 
 // Creates a reservation
+// TODO: Convert to transaction
+// TODO: Return the details/idReservation back instead of static success message
 app.post('/create-reservation', (req, res) => {
-	const reservationId = req.body.reservationId;
 	const customerId = req.body.customerId;
 	const aircraft = req.body.aircraft;
 	const start = req.body.start;
@@ -25,13 +26,32 @@ app.post('/create-reservation', (req, res) => {
 	const instructorId = req.body.instructorId;
 
 	db.query(
-		'INSERT INTO reservation (idReservation, idCustomer, idAircraft, dateStart, dateEnd, idFlightPlan, idInstructor) VALUES (?, ?, ?, ?, ?, ?, ?)',
-		[ reservationId, customerId, aircraft, start, end, flightPlan, instructorId ],
+		'INSERT INTO reservation (idCustomer, idAircraft, dateStart, dateEnd, idFlightPlan, idInstructor) VALUES (?, ?, ?, ?, ?, ?)',
+		[ customerId, aircraft, start, end, flightPlan, instructorId ],
 		(err, result) => {
 			if (err) {
 				console.log(err);
 			} else {
 				res.send('Reservation created');
+			}
+		}
+	);
+});
+
+app.get('/view-newest-reservations', (req, res) => {
+	db.query(
+		`SELECT
+            *
+        FROM
+            Reservation
+        ORDER BY
+            idReservation DESC
+        LIMIT 10`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
 			}
 		}
 	);

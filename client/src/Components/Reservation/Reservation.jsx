@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import Axios from 'axios';
 import Loader from 'react-loader-spinner';
+import { JsonToTable } from 'react-json-to-table';
 
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 function Reservation() {
-	const [ reservationId, setReservationId ] = useState(null);
 	const [ customerId, setCustomerId ] = useState(null);
 	const [ aircraft, setAircraft ] = useState('');
 	const [ start, setStart ] = useState('2021-11-12 13:45:00'); // TODO: Update default value
@@ -13,12 +13,14 @@ function Reservation() {
 	const [ flightPlan, setFlightPlan ] = useState(null);
 	const [ instructorId, setInstructorId ] = useState(null);
 
-	const [ isLoading, setIsLoading ] = useState(false);
+	const [ reservationData, setReservationData ] = useState();
+
+	const [ isLoadingCreate, setIsLoadingCreate ] = useState(false);
+	const [ isLoadingView, setIsLoadingView ] = useState(false);
 
 	const addReservation = () => {
-		setIsLoading(true);
+		setIsLoadingCreate(true);
 		Axios.post('https://cs5021-project.herokuapp.com/create-reservation', {
-			reservationId: reservationId,
 			customerId: customerId,
 			aircraft: aircraft,
 			start: start,
@@ -26,8 +28,15 @@ function Reservation() {
 			flightPlan: flightPlan,
 			instructorId: instructorId
 		}).then((res) => {
-			setIsLoading(false);
-			console.log('Success');
+			setIsLoadingCreate(false);
+		});
+	};
+
+	const viewNewestReservations = () => {
+		setIsLoadingView(true);
+		Axios.get('https://cs5021-project.herokuapp.com/view-newest-reservations').then((res) => {
+			setIsLoadingView(false);
+			setReservationData(res);
 		});
 	};
 
@@ -35,8 +44,6 @@ function Reservation() {
 		<div className="Reservation">
 			{/* TODO: Set value to display properly; single source of truth */}
 			<h1>Create Reservation</h1>
-			<label>Reservation ID</label>
-			<input type="number" onChange={(e) => setReservationId(e.target.value)} />
 
 			<label>Customer ID</label>
 			<input type="number" onChange={(e) => setCustomerId(e.target.value)} />
@@ -58,7 +65,7 @@ function Reservation() {
 
 			<hr />
 
-			{isLoading ? (
+			{isLoadingCreate ? (
 				<div className="LoadIcon">
 					<Loader type="TailSpin" color="#1D1D1D" height={80} width={80} />
 				</div>
@@ -68,9 +75,27 @@ function Reservation() {
 						addReservation();
 					}}
 				>
-					Create
+					Create new reservation
 				</button>
 			)}
+
+			<br />
+
+			{isLoadingView ? (
+				<div className="LoadIcon">
+					<Loader type="TailSpin" color="#1D1D1D" height={80} width={80} />
+				</div>
+			) : (
+				<button
+					onClick={() => {
+						viewNewestReservations();
+					}}
+				>
+					View newest reservations
+				</button>
+			)}
+
+			<JsonToTable json={reservationData} />
 		</div>
 	);
 }
