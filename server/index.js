@@ -25,12 +25,7 @@ app.post('/create-reservation', (req, res) => {
 	const flightPlan = req.body.flightPlan;
 	const instructorId = req.body.instructorId;
 
-	db.query('SET SESSION auto_increment_increment = 1;', (err, result) => {
-		if (err) {
-			console.log(err);
-		}
-	});
-
+	// NOTE: ClearDB has auto_increment_increment=10 and can't be changed in the free plan
 	db.query(
 		'INSERT INTO reservation (idCustomer, idAircraft, dateStart, dateEnd, idFlightPlan, idInstructor) VALUES (?, ?, ?, ?, ?, ?)',
 		[ customerId, aircraft, start, end, flightPlan, instructorId ],
@@ -642,5 +637,5 @@ app.get('/view-customer-categories-reservation-frequency', (req, res) => {
 
 // Server start message
 app.listen(process.env.PORT, () => {
-	console.log(`Server started on port`);
+	console.log('Server started on port' + process.env.PORT);
 });
