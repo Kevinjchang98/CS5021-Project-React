@@ -1,15 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Axios from 'axios';
-import Loader from 'react-loader-spinner';
 import { JsonToTable } from 'react-json-to-table';
+import DatePicker from 'react-datepicker';
+import Loader from 'react-loader-spinner';
+import * as moment from 'moment';
 
+import 'react-datepicker/dist/react-datepicker.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 function Reservation() {
 	const [ customerId, setCustomerId ] = useState(null);
 	const [ aircraft, setAircraft ] = useState('');
-	const [ start, setStart ] = useState('2021-11-12 13:45:00'); // TODO: Update default value
-	const [ end, setEnd ] = useState('2021-11-12 13:45:00');
+	const [ start, setStart ] = useState(new Date());
+	const [ end, setEnd ] = useState(new Date());
+	const [ startFormatted, setStartFormatted ] = useState('');
+	const [ endFormatted, setEndFormatted ] = useState('');
 	const [ flightPlan, setFlightPlan ] = useState(null);
 	const [ instructorId, setInstructorId ] = useState(null);
 
@@ -18,13 +23,27 @@ function Reservation() {
 	const [ isLoadingCreate, setIsLoadingCreate ] = useState(false);
 	const [ isLoadingView, setIsLoadingView ] = useState(false);
 
+	useEffect(
+		() => {
+			setStartFormatted(moment(start).format('YYYY-MM-DD HH:MM:SS'));
+		},
+		[ start ]
+	);
+
+	useEffect(
+		() => {
+			setEndFormatted(moment(end).format('YYYY-MM-DD HH:MM:SS'));
+		},
+		[ end ]
+	);
+
 	const addReservation = () => {
 		setIsLoadingCreate(true);
 		Axios.post('https://cs5021-project.herokuapp.com/create-reservation', {
 			customerId: customerId,
 			aircraft: aircraft,
-			start: start,
-			end: end,
+			start: startFormatted,
+			end: endFormatted,
 			flightPlan: flightPlan,
 			instructorId: instructorId
 		}).then((res) => {
@@ -47,17 +66,34 @@ function Reservation() {
 			{/* TODO: Set value to display properly; single source of truth */}
 			<h1>Create Reservation</h1>
 
+			{/* TODO: CSS for input boxes */}
 			<label>Customer ID</label>
 			<input type="number" onChange={(e) => setCustomerId(e.target.value)} />
 
 			<label>Aircraft</label>
 			<input type="text" onChange={(e) => setAircraft(e.target.value)} />
 
-			<label>Start date</label>
-			<input type="text" onChange={(e) => setStart(e.target.value)} />
+			<label>Start date and time</label>
+			<DatePicker
+				dateFormat="yyyy-MM-dd HH:mm"
+				selected={start}
+				onChange={(date) => {
+					setStart(date);
+				}}
+				showTimeSelect
+				timeFormat="HH:mm"
+			/>
 
-			<label>End date</label>
-			<input type="text" onChange={(e) => setEnd(e.target.value)} />
+			<label>End date and time</label>
+			<DatePicker
+				dateFormat="yyyy-MM-dd HH:mm"
+				selected={end}
+				onChange={(date) => {
+					setEnd(date);
+				}}
+				showTimeSelect
+				timeFormat="HH:mm"
+			/>
 
 			<label>Flight plan ID</label>
 			<input type="number" onChange={(e) => setFlightPlan(e.target.value)} />
