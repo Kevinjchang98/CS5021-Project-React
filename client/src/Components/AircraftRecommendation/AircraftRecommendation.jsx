@@ -12,12 +12,14 @@ function AircraftRecommendation() {
 
 	const getAircraft = () => {
 		setIsLoading(true);
+		setAircraftList(null);
 		Axios.post('https://cs5021-project.herokuapp.com/view-aircraft', { customerIdAircraft: customerIdAircraft }) //
 			.then((res) => {
 				setAircraftList(res.data);
 				setIsLoading(false);
 			});
 	};
+
 	return (
 		<div className="AircraftRecommendation">
 			<h1>Show recommended aircraft</h1>
@@ -68,13 +70,13 @@ function AircraftRecommendation() {
 				Show
 			</button>
 
+			<br />
+
 			{isLoading ? (
 				<div className="LoadIcon">
 					<Loader type="TailSpin" color="#1D1D1D" height={80} width={80} />
 				</div>
 			) : null}
-
-			<br />
 
 			{/* {aircraftList.map((val) => {
 				return (
