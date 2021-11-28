@@ -1,5 +1,4 @@
 import internalModel from './ModelExport.png';
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader } from 'react-pro-sidebar';
 
 function Home() {
 	return (
