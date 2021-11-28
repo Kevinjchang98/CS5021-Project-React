@@ -28,15 +28,15 @@ function Sidebar() {
 				</SidebarHeader>
 				<Menu>
 					<MenuItem>
-						<Link to="/">Home</Link>
+						<Link to="/">Introduction</Link>
+					</MenuItem>
+					<MenuItem>
+						<Link to="/recommended-aircraft">Show Recommended Aircraft</Link>
 					</MenuItem>
 					<MenuItem>
 						<Link to="/reservation">Create Reservation</Link>
 					</MenuItem>
 					<SubMenu title="Sample Queries" defaultOpen="true">
-						<MenuItem>
-							<Link to="/recommended-aircraft">Recommended Aircraft</Link>
-						</MenuItem>
 						{queryData.map((data) => {
 							return (
 								<MenuItem key={data.url}>
