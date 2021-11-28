@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import Axios from 'axios';
+import Loader from 'react-loader-spinner';
+
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 function Reservation() {
 	const [ reservationId, setReservationId ] = useState(null);
@@ -10,7 +13,10 @@ function Reservation() {
 	const [ flightPlan, setFlightPlan ] = useState(null);
 	const [ instructorId, setInstructorId ] = useState(null);
 
+	const [ isLoading, setIsLoading ] = useState(false);
+
 	const addReservation = () => {
+		setIsLoading(true);
 		Axios.post('https://cs5021-project.herokuapp.com/create-reservation', {
 			reservationId: reservationId,
 			customerId: customerId,
@@ -20,6 +26,7 @@ function Reservation() {
 			flightPlan: flightPlan,
 			instructorId: instructorId
 		}).then((res) => {
+			setIsLoading(false);
 			console.log('Success');
 		});
 	};
@@ -51,13 +58,19 @@ function Reservation() {
 
 			<hr />
 
-			<button
-				onClick={() => {
-					addReservation();
-				}}
-			>
-				Create
-			</button>
+			{isLoading ? (
+				<div className="LoadIcon">
+					<Loader type="ThreeDots" color="#1D1D1D" height={80} width={80} />
+				</div>
+			) : (
+				<button
+					onClick={() => {
+						addReservation();
+					}}
+				>
+					Create
+				</button>
+			)}
 		</div>
 	);
 }

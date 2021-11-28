@@ -1,16 +1,21 @@
 import { useState } from 'react';
 import Axios from 'axios';
 import { JsonToTable } from 'react-json-to-table';
+import Loader from 'react-loader-spinner';
+
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 function AircraftRecommendation() {
 	const [ aircraftList, setAircraftList ] = useState([]);
 	const [ customerIdAircraft, setCustomerIdAircraft ] = useState(null);
+	const [ isLoading, setIsLoading ] = useState(false);
 
 	const getAircraft = () => {
+		setIsLoading(true);
 		Axios.post('https://cs5021-project.herokuapp.com/view-aircraft', { customerIdAircraft: customerIdAircraft }) //
 			.then((res) => {
-				console.log(res.data);
 				setAircraftList(res.data);
+				setIsLoading(false);
 			});
 	};
 	return (
@@ -53,6 +58,8 @@ function AircraftRecommendation() {
 
 			<input type="number" onChange={(e) => setCustomerIdAircraft(e.target.value)} />
 
+			<br />
+
 			<button
 				onClick={() => {
 					getAircraft();
@@ -61,13 +68,21 @@ function AircraftRecommendation() {
 				Show
 			</button>
 
-			{aircraftList.map((val) => {
+			{isLoading ? (
+				<div className="LoadIcon">
+					<Loader type="ThreeDots" color="#1D1D1D" height={80} width={80} />
+				</div>
+			) : null}
+
+			<br />
+
+			{/* {aircraftList.map((val) => {
 				return (
 					<div key={val.idAircraft}>
 						{val.idAircraft} -- {val.class}
 					</div>
 				);
-			})}
+			})} */}
 
 			<JsonToTable json={aircraftList} />
 		</div>
