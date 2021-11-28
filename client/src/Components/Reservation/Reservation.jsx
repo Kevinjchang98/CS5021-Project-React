@@ -60,7 +60,7 @@ function Reservation() {
 
 			{isLoading ? (
 				<div className="LoadIcon">
-					<Loader type="ThreeDots" color="#1D1D1D" height={80} width={80} />
+					<Loader type="TailSpin" color="#1D1D1D" height={80} width={80} />
 				</div>
 			) : (
 				<button
