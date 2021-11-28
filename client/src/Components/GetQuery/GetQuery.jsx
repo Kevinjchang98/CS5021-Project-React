@@ -38,13 +38,13 @@ function GetQuery(props) {
 				Run query
 			</button>
 
+			<br />
+
 			{isLoading ? (
 				<div className="LoadIcon">
 					<Loader type="TailSpin" color="#1D1D1D" height={80} width={80} />
 				</div>
 			) : null}
-
-			<br />
 
 			<JsonToTable json={data} />
 		</div>
