@@ -42,6 +42,8 @@ Instead of putting the password directly in the code though create a new Config 
     });
 
 You'll need to update the link to your database in the GetQuery.jsx file's Axios.get() function as well.
+
+You can then use the credentials and connection information to connect to the ClearDB server from MySQL Workbench and run your dump file to recreate your database on ClearDB.
 ## Node.js
 Go to Settings > Buildpacks and add "https://github.com/timanovsky/subdir-heroku-buildpack.git" as a buildpack. Drag to be first/before heroku/nodejs
 
