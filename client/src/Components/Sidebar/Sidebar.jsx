@@ -21,22 +21,22 @@ function Sidebar() {
 							whiteSpace: 'nowrap'
 						}}
 					>
+						{/* Title at the top of the sidebar */}
 						CS5021-1 Group 7
 						<br />
 						Flight School Management Database
 					</div>
 				</SidebarHeader>
+
 				<Menu>
+					{/* Link to the introduction page */}
 					<MenuItem>
 						<Link to="/">Introduction</Link>
 					</MenuItem>
-					<MenuItem>
-						<Link to="/recommended-aircraft">Show Recommended Aircraft</Link>
-					</MenuItem>
-					<MenuItem>
-						<Link to="/reservation">Create Reservation</Link>
-					</MenuItem>
+
+					{/* Sample queries submenu drop-down */}
 					<SubMenu title="Sample Queries" defaultOpen="true">
+						{/* Creates links from the contents of the Components/GetQueryData.js file */}
 						{queryData.map((data) => {
 							return (
 								<MenuItem key={data.url}>

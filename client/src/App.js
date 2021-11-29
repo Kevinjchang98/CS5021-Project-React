@@ -3,8 +3,6 @@ import './App.css';
 
 import Sidebar from './Components/Sidebar/Sidebar';
 import Home from './Components/Home/Home';
-import Reservation from './Components/Reservation/Reservation';
-import AircraftRecommendation from './Components/AircraftRecommendation/AircraftRecommendation';
 import GetQuery from './Components/GetQuery/GetQuery';
 
 import queryData from './Components/GetQuery/GetQueryData';
@@ -19,12 +17,11 @@ function App() {
 
 				<div className="ContentBody">
 					<Routes>
+						{/* If the url is / then go to intro/home page */}
 						<Route path="/" element={<Home />} />
-						<Route path="/recommended-aircraft" element={<AircraftRecommendation />} />
-						<Route path="/reservation" element={<Reservation />} />
 
+						{/* Creates pages based on the contents of the Components/GetQueryData.js file */}
 						{queryData.map((data) => {
-							console.log(data.url);
 							return (
 								<Route
 									key={data.url}
