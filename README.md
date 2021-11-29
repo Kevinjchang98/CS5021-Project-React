@@ -5,7 +5,9 @@ For this project the front-end (contained in the client folder) was hosted on Ne
 # Netlify
 ## Build settings
 Base directory: client
+
 Build command: npm run build
+
 Publish directory: client/build
 # Heroku
 ## ClearDB
