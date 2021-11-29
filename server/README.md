@@ -1,7 +1,6 @@
-# CS5021-01 Group 7 Project
-## Members
-Kevin Chang, Kenny Halim, William McDonnell
-## Description
-This is the Node.js backend code for the class project.
+# Node.js Server
+index.js is the code for the backend server which queries a MySQL server.
 
-All sample queries are implemented in index.js, as well as extra functionality required for creating a new reservation and calling upon the stored procedure which recommends aircraft for a particular customer. Note that due to the free ClearDB plan being used not allowing for admin permissions, the stored procedure is hard-coded in index.js, though the code to call the actual stored procedure on the MySQL server is included in a comment.
+You'll need to change the createPool() information for whichever backend MySQL server you're using.
+
+Each app.get() contains the MySQL code you want executed on the MySQL database.
