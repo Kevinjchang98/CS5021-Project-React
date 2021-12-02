@@ -39,6 +39,7 @@ app.post('/create-reservation', (req, res) => {
 	);
 });
 
+// Shows newest 10 reservations
 app.get('/view-newest-reservations', (req, res) => {
 	db.query(
 		`SELECT
@@ -48,6 +49,23 @@ app.get('/view-newest-reservations', (req, res) => {
         ORDER BY
             idReservation DESC
         LIMIT 10`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		}
+	);
+});
+
+// View information about all aircraft
+app.get('/view-aircraft-data', (req, res) => {
+	db.query(
+		`SELECT
+            *
+        FROM
+            Aircraft`,
 		(err, result) => {
 			if (err) {
 				console.log(err);
