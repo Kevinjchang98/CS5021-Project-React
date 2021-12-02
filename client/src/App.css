@@ -55,3 +55,27 @@ body {
 	flex-direction: column;
 	align-items: center;
 }
+
+.statWrapper {
+	margin: 150px auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	min-height: min(80vh, 1000px);
+	height: 100%;
+	width: 100%;
+}
+
+.graphWrapper {
+	margin: 0;
+	width: 100%;
+	flex-grow: 2;
+	min-height: min(40vh, 500px);
+	max-height: 1000px;
+}
+
+svg {
+	overflow: visible;
+}
