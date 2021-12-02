@@ -77,8 +77,5 @@ body {
 }
 
 svg {
-	background-color: gainsboro;
 	overflow: visible;
-	width: 500px;
-	height: 200px;
 }
