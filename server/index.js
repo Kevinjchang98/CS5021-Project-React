@@ -50,6 +50,23 @@ app.get('/view-aircraft-soonest-annual', (req, res) => {
 	);
 });
 
+// View information about all aircraft
+app.get('/view-aircraft-data', (req, res) => {
+	db.query(
+		`SELECT
+            *
+        FROM
+            Aircraft`,
+		(err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		}
+	);
+});
+
 // Finds mechanic that's done the most Maint within the last year and Type of Maint they've done
 app.get('/view-mechanic-most-performed', (req, res) => {
 	db.query(
