@@ -36,6 +36,9 @@ function Sidebar() {
 					<MenuItem>
 						<Link to="/reservation">Create Reservation</Link>
 					</MenuItem>
+					<MenuItem>
+						<Link to="/aircraft-data">Aircraft Data</Link>
+					</MenuItem>
 					<SubMenu title="Sample Queries" defaultOpen="true">
 						{queryData.map((data) => {
 							return (

@@ -8,6 +8,7 @@ import AircraftRecommendation from './Components/AircraftRecommendation/Aircraft
 import GetQuery from './Components/GetQuery/GetQuery';
 
 import queryData from './Components/GetQuery/GetQueryData';
+import AircraftData from './Components/AircraftData/AircraftData';
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 						<Route path="/" element={<Home />} />
 						<Route path="/recommended-aircraft" element={<AircraftRecommendation />} />
 						<Route path="/reservation" element={<Reservation />} />
+						<Route path="/aircraft-data" element={<AircraftData />} />
 
 						{queryData.map((data) => {
 							console.log(data.url);
