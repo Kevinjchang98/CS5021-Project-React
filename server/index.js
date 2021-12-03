@@ -21,7 +21,8 @@ const db = mysql.createPool({
 	connectionLimit: 10,
 	user: 'admin',
 	host: 'cs5021.cxy8mwrj7r1f.us-east-2.rds.amazonaws.com',
-	password: process.env.DB_PASSWORD_AWS
+	password: process.env.DB_PASSWORD_AWS,
+	dattabase: 'mm_cpsc502101team07'
 });
 
 // Creates a reservation
