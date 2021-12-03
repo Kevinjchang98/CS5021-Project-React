@@ -26,7 +26,6 @@ function App() {
 						<Route path="/aircraft-data" element={<AircraftData />} />
 
 						{queryData.map((data) => {
-							console.log(data.url);
 							return (
 								<Route
 									key={data.url}
