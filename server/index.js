@@ -6,12 +6,23 @@ app.use(cors());
 app.use(express.json());
 
 // Create connection pool
+// ClearDB
+// const db = mysql.createPool({
+// 	connectionLimit: 10,
+// 	user: 'b57e165b4c319d',
+// 	host: 'us-cdbr-east-04.cleardb.com',
+// 	password: process.env.DB_PASSWORD,
+// 	database: 'heroku_200e0e8c7fc90b0'
+// });
+
+// Create connection pool
+// AWS
 const db = mysql.createPool({
 	connectionLimit: 10,
-	user: 'b57e165b4c319d',
-	host: 'us-cdbr-east-04.cleardb.com',
-	password: process.env.DB_PASSWORD,
-	database: 'heroku_200e0e8c7fc90b0'
+	user: 'admin',
+	host: 'cxy8mwrj7r1f.us-east-2.rds.amazonaws.com',
+	password: process.env.DB_PASSWORD_AWS,
+	database: 'cs5021'
 });
 
 // Creates a reservation
