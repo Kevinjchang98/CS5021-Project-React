@@ -20,9 +20,8 @@ app.use(express.json());
 const db = mysql.createPool({
 	connectionLimit: 10,
 	user: 'admin',
-	host: 'cxy8mwrj7r1f.us-east-2.rds.amazonaws.com',
-	password: process.env.DB_PASSWORD_AWS,
-	database: 'cs5021'
+	host: 'cs5021.cxy8mwrj7r1f.us-east-2.rds.amazonaws.com',
+	password: process.env.DB_PASSWORD_AWS
 });
 
 // Creates a reservation
