@@ -475,7 +475,6 @@ app.get('/view-customers-reservations-no-invoices', (req, res) => {
 					Reservation
 				WHERE
 					idInvoice IS NULL
-					AND (datediff(curdate(), dateStart) < 31)
 				GROUP BY
 					idCustomer
 				HAVING
