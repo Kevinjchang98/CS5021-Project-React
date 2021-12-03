@@ -38,7 +38,7 @@ app.post('/create-reservation', (req, res) => {
 
 	// NOTE: ClearDB has auto_increment_increment=10 and can't be changed in the free plan
 	db.query(
-		'INSERT INTO reservation (idCustomer, idAircraft, dateStart, dateEnd, idFlightPlan, idInstructor) VALUES (?, ?, ?, ?, ?, ?)',
+		'INSERT INTO Reservation (idCustomer, idAircraft, dateStart, dateEnd, idFlightPlan, idInstructor) VALUES (?, ?, ?, ?, ?, ?)',
 		[ customerId, aircraft, start, end, flightPlan, instructorId ],
 		(err, result) => {
 			if (err) {
