@@ -22,7 +22,7 @@ const db = mysql.createPool({
 	user: 'admin',
 	host: 'cs5021.cxy8mwrj7r1f.us-east-2.rds.amazonaws.com',
 	password: process.env.DB_PASSWORD_AWS,
-	dattabase: 'mm_cpsc502101team07'
+	database: 'mm_cpsc502101team07'
 });
 
 // Creates a reservation
