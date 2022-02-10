@@ -21,6 +21,7 @@ const db = mysql.createPool({
 	connectionLimit: 10,
 	user: 'root',
 	host: 'containers-us-west-28.railway.app',
+    port: '7350',
 	password: process.env.DB_PASSWORD_RAILWAY,
 	database: 'railway'
 });
