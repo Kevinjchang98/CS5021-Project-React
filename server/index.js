@@ -19,10 +19,10 @@ app.use(express.json());
 // AWS
 const db = mysql.createPool({
 	connectionLimit: 10,
-	user: 'admin',
-	host: 'cs5021.cxy8mwrj7r1f.us-east-2.rds.amazonaws.com',
+	user: 'root',
+	host: 'containers-us-west-28.railway.app',
 	password: process.env.DB_PASSWORD_AWS,
-	database: 'mm_cpsc502101team07'
+	database: 'railway'
 });
 
 // Creates a reservation
