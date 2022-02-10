@@ -20,7 +20,7 @@ app.use(express.json());
 const db = mysql.createPool({
 	connectionLimit: 10,
 	user: 'root',
-	host: 'containers-us-west-28.railway.app:7350',
+	host: 'containers-us-west-28.railway.app',
 	password: process.env.DB_PASSWORD_RAILWAY,
 	database: 'railway'
 });
