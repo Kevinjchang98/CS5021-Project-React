@@ -23,7 +23,7 @@ const db = mysql.createPool({
 	host: process.env.RAILWAY_HOST,
     port: process.env.RAILWAY_PORT,
 	password: process.env.RAILWAY_PASSWORD,
-	database: process.env.RAILWAY_DATABSE
+	database: process.env.RAILWAY_DATABASE
 });
 
 // Creates a reservation
