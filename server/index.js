@@ -19,11 +19,11 @@ app.use(express.json());
 // AWS
 const db = mysql.createPool({
 	connectionLimit: 10,
-	user: 'root',
-	host: 'containers-us-west-28.railway.app',
-    port: '7350',
-	password: process.env.DB_PASSWORD_RAILWAY,
-	database: 'railway'
+	user: process.env.RAILWAY_USER,
+	host: process.env.RAILWAY_HOST,
+    port: process.env.RAILWAY_PORT,
+	password: process.env.RAILWAY_PASSWORD,
+	database: process.env.RAILWAY_DATABSE
 });
 
 // Creates a reservation
