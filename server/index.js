@@ -17,14 +17,7 @@ app.use(express.json());
 
 // Create connection pool
 // AWS
-const db = mysql.createPool({
-	connectionLimit: 10,
-	user: process.env.RAILWAY_USER,
-	host: process.env.RAILWAY_HOST,
-    port: process.env.RAILWAY_PORT,
-	password: process.env.RAILWAY_PASSWORD,
-	database: process.env.RAILWAY_DATABASE
-});
+const db = mysql.createPool(process.env.URL);
 
 // Creates a reservation
 // TODO: Convert to transaction
